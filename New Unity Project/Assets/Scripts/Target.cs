@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    //variables
+    //spawning variables
     private Rigidbody targetRb;
     private float minSpeed = 12;
     private float maxSpeed = 16;
@@ -12,6 +12,15 @@ public class Target : MonoBehaviour
     private float xRange = 4;
     private float ySpawnPos = -2;
 
+    //game manager variable
+    private GameManager gamerManager;
+
+
+    //set individual target score
+    public int pointValue;
+
+    //object go boom
+    public ParticleSystem explosion;
 
 
     // Start is called before the first frame update
@@ -28,6 +37,9 @@ public class Target : MonoBehaviour
 
         //create random spawn point
         transform.position = RandomSpawnPos();
+
+        //find and tie the game manager script
+        gamerManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -40,6 +52,9 @@ public class Target : MonoBehaviour
     private void OnMouseDown()
     {
         Destroy(gameObject);
+        gamerManager.UpdateScore(pointValue);
+        Instantiate(explosion, transform.position, explosion.transform.rotation);
+
     }
 
     //destroy object off screen

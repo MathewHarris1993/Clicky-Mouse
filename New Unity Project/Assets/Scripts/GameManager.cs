@@ -53,17 +53,12 @@ public class GameManager : MonoBehaviour
 
             //selects random target
             Instantiate(targets[index]);
-
-            //test score counter
-            UpdateScore(5);
-
-
         }
 
     }
 
     //track score
-    private void UpdateScore(int scoreToAdd)
+    public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
