@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 
 public class GameManager : MonoBehaviour
@@ -17,10 +20,21 @@ public class GameManager : MonoBehaviour
     //GUI variables
     private int score;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameOverText;
+
+    //game over variable
+    public bool isGameActive;
+
+    //restart variable
+    public Button restart;
 
     // Start is called before the first frame update
     void Start()
     {
+        //set game over variable
+        isGameActive = true;
+
+
         //spawn the targets
         StartCoroutine(SpawnTarget());
 
@@ -30,7 +44,7 @@ public class GameManager : MonoBehaviour
         //begin to track score
         UpdateScore(0);
 
-
+        
     }
 
     // Update is called once per frame
@@ -42,7 +56,7 @@ public class GameManager : MonoBehaviour
     //create ability to spawn targets
     IEnumerator SpawnTarget()
     {
-        while(true)
+        while(isGameActive)
         {
 
             //time between spawns
@@ -62,5 +76,26 @@ public class GameManager : MonoBehaviour
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
+    }
+
+    //create game over
+    public void GameOver()
+    {
+        //spawn game over text
+        gameOverText.gameObject.SetActive(true);
+
+        //set game state to game over
+        isGameActive = false;
+
+        //show restart button
+        restart.gameObject.SetActive(true);
+
+
+    }
+
+    //allow game to restart
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

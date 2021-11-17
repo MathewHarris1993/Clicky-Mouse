@@ -51,16 +51,23 @@ public class Target : MonoBehaviour
     //clicks destroy target
     private void OnMouseDown()
     {
-        Destroy(gameObject);
-        gamerManager.UpdateScore(pointValue);
-        Instantiate(explosion, transform.position, explosion.transform.rotation);
-
+        if (gamerManager.isGameActive)
+        {
+            Destroy(gameObject);
+            gamerManager.UpdateScore(pointValue);
+            Instantiate(explosion, transform.position, explosion.transform.rotation);
+        }
     }
 
     //destroy object off screen
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+        if(!gameObject.CompareTag("Bad"))
+        {
+            gamerManager.GameOver();
+
+        }
 
     }
 
