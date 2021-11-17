@@ -23,8 +23,13 @@ public class GameManager : MonoBehaviour
     {
         //spawn the targets
         StartCoroutine(SpawnTarget());
+
+        //set default score
         score = 0;
-        scoreText.text = "Score: " + score;
+
+        //begin to track score
+        UpdateScore(0);
+
 
     }
 
@@ -49,7 +54,18 @@ public class GameManager : MonoBehaviour
             //selects random target
             Instantiate(targets[index]);
 
+            //test score counter
+            UpdateScore(5);
+
+
         }
 
+    }
+
+    //track score
+    private void UpdateScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        scoreText.text = "Score: " + score;
     }
 }
