@@ -10,7 +10,7 @@ public class Target : MonoBehaviour
     private float maxSpeed = 16;
     private float torque = 10;
     private float xRange = 4;
-    private float ySpawnPos = -6;
+    private float ySpawnPos = -2;
 
 
 
@@ -35,6 +35,20 @@ public class Target : MonoBehaviour
     {
         
     }
+
+    //clicks destroy target
+    private void OnMouseDown()
+    {
+        Destroy(gameObject);
+    }
+
+    //destroy object off screen
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+
+    }
+
     //created the random up force
     Vector3 RandomForce()
     {
