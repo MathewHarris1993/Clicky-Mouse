@@ -28,8 +28,20 @@ public class GameManager : MonoBehaviour
     //restart variable
     public Button restart;
 
+    //title screen variable
+    public GameObject titleScreen;
+
+
     // Start is called before the first frame update
     void Start()
+    {
+        
+
+        
+    }
+
+    // code to start game in public method. 
+    public void StartGame(int difficulty)
     {
         //set game over variable
         isGameActive = true;
@@ -44,7 +56,12 @@ public class GameManager : MonoBehaviour
         //begin to track score
         UpdateScore(0);
 
-        
+        //remove title screen
+        titleScreen.gameObject.SetActive(false);
+
+        //set diff by changing spawn rate
+        spawnRate = spawnRate / difficulty;
+
     }
 
     // Update is called once per frame
