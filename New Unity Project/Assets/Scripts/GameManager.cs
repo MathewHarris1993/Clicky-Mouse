@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -12,11 +14,17 @@ public class GameManager : MonoBehaviour
     private float spawnRate = 1;
 
 
+    //GUI variables
+    private int score;
+    public TextMeshProUGUI scoreText;
+
     // Start is called before the first frame update
     void Start()
     {
         //spawn the targets
         StartCoroutine(SpawnTarget());
+        score = 0;
+        scoreText.text = "Score: " + score;
 
     }
 
